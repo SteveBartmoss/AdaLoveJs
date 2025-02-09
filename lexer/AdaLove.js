@@ -107,6 +107,30 @@ export function processCode(code){
                 }
                 break
         }
+
+    }
+
+    if(swap !==''){
+        switch(estado){
+            case 1:
+                listTokens.push({
+                    typeToken: 'Letters',
+                    character: swap
+                });
+                break;
+            case 2:
+                listTokens.push({
+                    typeToken: 'Numbers',
+                    character: swap
+                });
+                break;
+            case 3:
+                listTokens.push({
+                    typeToken: 'Operator',
+                    character: swap
+                });
+                break;
+        }
     }
 
     return listTokens
