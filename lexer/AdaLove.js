@@ -17,13 +17,13 @@ export function sliceCode(code){
 
     for(let ite=0; ite<=code.length; ite++){
         if(code[ite] === '\n' || code[ite] === '\r'){
-            rowsCode.push(code.slice(start,ite))
+            rowsCode.push(code.slice(start,ite)+'\n')
             start = ite + 1
         }
     }
 
     if(start < code.length){
-        rowsCode.push(code.slice(start))
+        rowsCode.push(code.slice(start)+'\n')
     }
 
     rowsCode = rowsCode.filter(line => line.trim() !=='')
