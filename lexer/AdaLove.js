@@ -4,6 +4,7 @@ const letters=/([aA-zZ])/;
 const operatorsAccess=/([:\.])/
 const numbers=/([0-9])/
 const operetorsIntervals=/([<>])/
+const coments=/(['"])/
 
 export function sliceCode(code){
     
@@ -58,6 +59,11 @@ export function processCode(code){
                     iterador++
                     estado=3
                 }
+                else if(coments.test(char)){
+                    swap+=char
+                    iterador++
+                    estado=4
+                }
                 else{
                     iterador++
                 }
@@ -106,6 +112,23 @@ export function processCode(code){
                     estado=0
                 }
                 break
+            case 4:
+                if(coments.test(char)){
+                    swap+=char
+                    iterador++
+                    estado=0
+                    listTokens.push({
+                        typeToken: 'String',
+                        character: swap
+                    })
+                    swap=''
+                    estado=0
+                }else{
+                    swap+=char
+                    iterador++
+                    estado=4
+                }
+                break
         }
 
     }
@@ -116,20 +139,26 @@ export function processCode(code){
                 listTokens.push({
                     typeToken: 'Letters',
                     character: swap
-                });
-                break;
+                })
+                break
             case 2:
                 listTokens.push({
                     typeToken: 'Numbers',
                     character: swap
-                });
-                break;
+                })
+                break
             case 3:
                 listTokens.push({
                     typeToken: 'Operator',
                     character: swap
-                });
-                break;
+                })
+                break
+            case 4: 
+                listTokens.push({
+                    typeToken: 'String',
+                    character: swap
+                })
+                break
         }
     }
 
