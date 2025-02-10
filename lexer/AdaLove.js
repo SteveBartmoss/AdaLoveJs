@@ -55,9 +55,15 @@ export function processCode(code){
                     estado=2
                 }
                 else if(operators.test(char)){
-                    swap+=char
-                    iterador++
-                    estado=3
+                    if(char==='/'){
+                        swap+=char
+                        iterador++
+                        estado=5
+                    }else{
+                        swap+=char
+                        iterador++
+                        estado=3
+                    }
                 }
                 else if(coments.test(char)){
                     swap+=char
@@ -127,6 +133,24 @@ export function processCode(code){
                     swap+=char
                     iterador++
                     estado=4
+                }
+                break
+            case 5: 
+                if(char==='/'){
+                    swap+=char
+                    iterador++
+                    estado=6
+                }else if(char==='*'){
+                    swap+=char
+                    iterador++
+                    estado=6
+                }else{
+                    listTokens.push({
+                        typeToken: 'Operator',
+                        character: swap
+                    })
+                    swap=''
+                    estado=0
                 }
                 break
         }
