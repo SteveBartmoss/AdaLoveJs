@@ -156,7 +156,7 @@ export function processCode(code){
             case 6:
                 if(char==='\n'){
                     listTokens.push({
-                        typeToke: 'Comment',
+                        typeToken: 'Comment',
                         character: swap
                     })
                     swap=''
@@ -167,6 +167,21 @@ export function processCode(code){
                     estado=6
                 }
                 break  
+            case 7:
+                if(char==='*'&&code[iterador+1]==='/'){
+                    listTokens.push({
+                        typeToken: 'Comment',
+                        character: swap
+                    })
+                    swap=''
+                    iterador++
+                    estado=0
+                }else{
+                    swap+=char
+                    iterador++
+                    estado=7
+                }
+                break
         }
 
     }
