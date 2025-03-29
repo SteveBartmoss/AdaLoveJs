@@ -4,7 +4,7 @@ const letters=/([aA-zZ])/;
 const operatorsAccess=/([:\.])/
 const numbers=/([0-9])/
 const operetorsIntervals=/([<>])/
-const coments=/(['"])/
+const text=/(['"])/
 
 export function sliceCode(code){
     
@@ -80,6 +80,13 @@ export function processCode(code){
                     swap+=char
                     iterador++
                     estado=1
+                }else if(char === "[" || char === "."){
+                    listTokens.push({
+                        typeToken: 'Letters',
+                        character: swap
+                    })
+                    swap=''
+                    estado=0
                 }else{
                     listTokens.push({
                         typeToken: 'Letters',
@@ -119,10 +126,9 @@ export function processCode(code){
                 }
                 break
             case 4:
-                if(coments.test(char)){
+                if(text.test(char)){
                     swap+=char
                     iterador++
-                    estado=0
                     listTokens.push({
                         typeToken: 'String',
                         character: swap
