@@ -80,7 +80,7 @@ export function processCode(code){
                     swap+=char
                     iterador++
                     estado=1
-                }else if(char === "[" || char === "."){
+                }else if(operatorsAccess.test(char)){
                     listTokens.push({
                         typeToken: 'Letters',
                         character: swap
