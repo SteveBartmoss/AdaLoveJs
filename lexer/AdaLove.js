@@ -70,6 +70,13 @@ export function processCode(code){
                     iterador++
                     estado=4
                 }
+                else if(operatorsAccess.test(char)){
+                    listTokens.push({
+                        typeToken: 'OperatorAcces',
+                        character: char
+                    })
+                    estado=0
+                }
                 else{
                     iterador++
                 }
