@@ -143,7 +143,7 @@ export function processCode(code){
                 }else if(char==='*'){
                     swap+=char
                     iterador++
-                    estado=6
+                    estado=7
                 }else{
                     listTokens.push({
                         typeToken: 'Operator',
@@ -153,6 +153,20 @@ export function processCode(code){
                     estado=0
                 }
                 break
+            case 6:
+                if(char==='\n'){
+                    listTokens.push({
+                        typeToke: 'Comment',
+                        character: swap
+                    })
+                    swap=''
+                    estado=0
+                }else{
+                    swap+=char
+                    iterador++
+                    estado=6
+                }
+                break  
         }
 
     }
