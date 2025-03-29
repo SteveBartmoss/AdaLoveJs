@@ -102,6 +102,10 @@ export function processCode(code){
                     swap+=char
                     iterador++
                     estado=2
+                }else if(char==='.'){
+                    swap+=char
+                    iterador++
+                    estado=2
                 }else{
                     listTokens.push({
                         typeToken: 'Numbers',
