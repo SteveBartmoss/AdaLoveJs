@@ -179,12 +179,13 @@ export function processCode(code){
                 break  
             case 7:
                 if(char==='*'&&code[iterador+1]==='/'){
+                    swap += char + '/'
                     listTokens.push({
                         typeToken: 'Comment',
                         character: swap
                     })
                     swap=''
-                    iterador++
+                    iterador+=2
                     estado=0
                 }else{
                     swap+=char
