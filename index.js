@@ -5,7 +5,7 @@ const codeTest = 'const persona = { nombre: "Juan" }\n persona.edad = 30; //Aña
 
 const test = '1+1aaaa/pp/*=-+"hola"'
 
-const listTokens = sliceCode(rawCode)
+const listTokens = sliceCode(codeTest)
 
 function reader(element,index,array){
     console.log(processCode(element))
