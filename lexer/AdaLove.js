@@ -65,17 +65,21 @@ export function processCode(code){
                         estado=3
                     }
                 }
+                /*
+                no recuerdo para que usaba esto
                 else if(coments.test(char)){
                     swap+=char
                     iterador++
                     estado=4
                 }
+                */
                 else if(operatorsAccess.test(char)){
                     listTokens.push({
                         typeToken: 'OperatorAcces',
                         character: char
                     })
                     estado=0
+                    iterador++
                 }
                 else{
                     iterador++
