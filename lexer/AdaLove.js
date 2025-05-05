@@ -81,6 +81,14 @@ export function processCode(code){
                     estado=0
                     iterador++
                 }
+                else if(operatorsSet.test(char)){
+                    listTokens.push({
+                        typeToken: 'OperatorSet',
+                        character: char
+                    })
+                    estado=0
+                    iterador++
+                }
                 else{
                     iterador++
                 }
