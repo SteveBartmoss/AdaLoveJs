@@ -86,6 +86,14 @@ export function processCode(code){
                     estado=0
                     iterador++
                 }
+                else if(char == ' '){
+                    listTokens.push({
+                        typeToken: 'Espacio',
+                        character: char,
+                    })
+                    estado=0
+                    iterador++
+                }
                 else{
                     iterador++
                 }
