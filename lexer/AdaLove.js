@@ -36,7 +36,8 @@ export function processCode(code){
     let listTokens=[]
     let estado=0
     let iterador=0
-    let swap='' 
+    let swap=''
+    let tabs=0
 
     while(iterador < code.length){
 
@@ -73,7 +74,8 @@ export function processCode(code){
                 else if(operatorsAccess.test(char)){
                     listTokens.push({
                         typeToken: 'OperatorAcces',
-                        character: char
+                        character: char,
+                        ident: tabs,
                     })
                     estado=0
                     iterador++
@@ -81,7 +83,8 @@ export function processCode(code){
                 else if(operatorsSet.test(char)){
                     listTokens.push({
                         typeToken: 'OperatorSet',
-                        character: char
+                        character: char,
+                        ident: tabs,
                     })
                     estado=0
                     iterador++
@@ -90,6 +93,7 @@ export function processCode(code){
                     listTokens.push({
                         typeToken: 'Espacio',
                         character: char,
+                        ident: tabs,
                     })
                     estado=0
                     iterador++
@@ -107,14 +111,16 @@ export function processCode(code){
                 }else if(operatorsAccess.test(char)){
                     listTokens.push({
                         typeToken: 'Letters',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
                 }else{
                     listTokens.push({
                         typeToken: 'Letters',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -133,7 +139,8 @@ export function processCode(code){
                 }else{
                     listTokens.push({
                         typeToken: 'Numbers',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -147,7 +154,8 @@ export function processCode(code){
                 }else{
                     listTokens.push({
                         typeToken: 'Operator',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -159,7 +167,8 @@ export function processCode(code){
                     iterador++
                     listTokens.push({
                         typeToken: 'String',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -181,7 +190,8 @@ export function processCode(code){
                 }else{
                     listTokens.push({
                         typeToken: 'Operator',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -191,7 +201,8 @@ export function processCode(code){
                 if(char==='\n'){
                     listTokens.push({
                         typeToken: 'Comment',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     estado=0
@@ -206,7 +217,8 @@ export function processCode(code){
                     swap += char + '/'
                     listTokens.push({
                         typeToken: 'Comment',
-                        character: swap
+                        character: swap,
+                        ident: tabs,
                     })
                     swap=''
                     iterador+=2
@@ -226,25 +238,29 @@ export function processCode(code){
             case 1:
                 listTokens.push({
                     typeToken: 'Letters',
-                    character: swap
+                    character: swap,
+                    ident: tabs,
                 })
                 break
             case 2:
                 listTokens.push({
                     typeToken: 'Numbers',
-                    character: swap
+                    character: swap,
+                    ident: tabs,
                 })
                 break
             case 3:
                 listTokens.push({
                     typeToken: 'Operator',
-                    character: swap
+                    character: swap,
+                    ident: tabs,
                 })
                 break
             case 4: 
                 listTokens.push({
                     typeToken: 'String',
-                    character: swap
+                    character: swap,
+                    ident: tabs,
                 })
                 break
         }
