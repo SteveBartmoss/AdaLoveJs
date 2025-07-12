@@ -5,6 +5,8 @@ const operatorsAccess=/([:\.])/
 const numbers=/([0-9])/
 const operetorsIntervals=/([<>])/
 const text=/(['"])/
+const openIdent=/([\{\[\(])/
+const closeIdent=/([\}\]\)])/ 
 
 export function sliceCode(code){
     
@@ -31,13 +33,15 @@ export function sliceCode(code){
     return rowsCode
 }
 
+let tabs=0
+
 export function processCode(code){
 
     let listTokens=[]
     let estado=0
     let iterador=0
     let swap=''
-    let tabs=0
+    
 
     while(iterador < code.length){
 
@@ -81,6 +85,12 @@ export function processCode(code){
                     iterador++
                 }
                 else if(operatorsSet.test(char)){
+                    if(openIdent.test(char) && code[iterador+1] === '\n'){
+                        tabs++
+                    }
+                    else if (closeIdent.test(char) && code[iterador+1] === '\n'){
+                        tabs--
+                    }
                     listTokens.push({
                         typeToken: 'OperatorSet',
                         character: char,
