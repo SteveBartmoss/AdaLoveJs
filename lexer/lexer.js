@@ -56,7 +56,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'OperatorAcces',
                             character: char,
-                            ident: this.tabs,
                         })
                         estado = 0
                         iterador++
@@ -66,7 +65,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'OperatorSet',
                             character: char,
-                            ident: this.tabs,
                         })
                         estado = 0
                         iterador++
@@ -75,7 +73,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Espacio',
                             character: char,
-                            ident: this.tabs,
                         })
                         estado = 0
                         iterador++
@@ -94,7 +91,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Letters',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -102,7 +98,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Letters',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -122,7 +117,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Numbers',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -137,7 +131,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Operator',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -150,7 +143,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'String',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -173,7 +165,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Operator',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -184,7 +175,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Comment',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         estado = 0
@@ -200,7 +190,6 @@ export class Lexer {
                         listTokens.push({
                             typeToken: 'Comment',
                             character: swap,
-                            ident: this.tabs,
                         })
                         swap = ''
                         iterador += 2
@@ -220,28 +209,24 @@ export class Lexer {
                     listTokens.push({
                         typeToken: 'Letters',
                         character: swap,
-                        ident: this.tabs,
                     })
                     break
                 case 2:
                     listTokens.push({
                         typeToken: 'Numbers',
                         character: swap,
-                        ident: this.tabs,
                     })
                     break
                 case 3:
                     listTokens.push({
                         typeToken: 'Operator',
                         character: swap,
-                        ident: this.tabs,
                     })
                     break
                 case 4:
                     listTokens.push({
                         typeToken: 'String',
                         character: swap,
-                        ident: this.tabs,
                     })
                     break
             }
