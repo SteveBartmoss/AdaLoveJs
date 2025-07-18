@@ -265,10 +265,6 @@ export class Lexer {
             }
         }
 
-        if (start < code.length) {
-            this.listCode.push(this.processCode(code.slice(start, code.length) + '\n'));
-        }
-
     }
 
 }
