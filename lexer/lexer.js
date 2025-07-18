@@ -122,9 +122,9 @@ export class Lexer {
                     }
                     break
                 case 4:
+                    iterador++
                     if (text.test(char)) {
                         swap += char
-                        iterador++
                         listTokens.push({
                             typeToken: 'String',
                             character: swap,
@@ -133,7 +133,6 @@ export class Lexer {
                         estado = 0
                     } else {
                         swap += char
-                        iterador++
                         estado = 4
                     }
                     break
