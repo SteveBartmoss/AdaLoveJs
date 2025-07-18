@@ -26,24 +26,21 @@ export class Lexer {
 
             switch (estado) {
                 case 0:
+                    iterador++
                     if (letters.test(char)) {
                         swap += char
-                        iterador++
                         estado = 1
                     }
                     else if (numbers.test(char)) {
                         swap += char
-                        iterador++
                         estado = 2
                     }
                     else if (operators.test(char)) {
                         swap += char
-                        iterador++
                         char === '/' ? estado = 5 : estado = 3
                     }
                     else if (text.test(char)) {
                         swap += char
-                        iterador++
                         estado = 4
                     }
                     else if (operatorsAccess.test(char)) {
@@ -52,7 +49,6 @@ export class Lexer {
                             character: char,
                         })
                         estado = 0
-                        iterador++
                     }
                     else if (operatorsSet.test(char)) {
                         
@@ -61,7 +57,6 @@ export class Lexer {
                             character: char,
                         })
                         estado = 0
-                        iterador++
                     }
                     else if (char == ' ') {
                         listTokens.push({
@@ -69,10 +64,6 @@ export class Lexer {
                             character: char,
                         })
                         estado = 0
-                        iterador++
-                    }
-                    else {
-                        iterador++
                     }
                     break
 
