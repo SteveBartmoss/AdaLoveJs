@@ -37,15 +37,9 @@ export class Lexer {
                         estado = 2
                     }
                     else if (operators.test(char)) {
-                        if (char === '/') {
-                            swap += char
-                            iterador++
-                            estado = 5
-                        } else {
-                            swap += char
-                            iterador++
-                            estado = 3
-                        }
+                        swap += char
+                        iterador++
+                        char === '/' ? estado = 5 : estado = 3
                     }
                     else if (text.test(char)) {
                         swap += char
