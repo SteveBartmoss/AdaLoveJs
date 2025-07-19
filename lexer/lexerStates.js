@@ -1,6 +1,6 @@
 export class LexerStates {
 
-    stateZero(char, iterador, swap) {
+    stateZero(char, swap) {
 
         const letters = /([aA-zZ])/;
         const numbers = /([0-9])/;
@@ -9,11 +9,9 @@ export class LexerStates {
         const operatorsAccess = /([:\.])/;
         const operatorsSet = /([\{\}\[\]\(\)])/;
 
-        iterador++
-
         if (letters.test(char)) {
             swap += char
-            return {    
+            return {
                 state: 1
             }
         }
@@ -44,22 +42,46 @@ export class LexerStates {
         }
         else if (operatorsAccess.test(char)) {
             return {
-                token: {typeToken: 'OperatorAcces', character: char,}, 
+                token: { typeToken: 'OperatorAcces', character: char, },
                 state: 0
             }
         }
         else if (operatorsSet.test(char)) {
             return {
-                token: {typeToken: 'OperatorSet', character: char,}, 
+                token: { typeToken: 'OperatorSet', character: char, },
                 state: 0
             }
         }
         else if (char == ' ') {
             return {
-                token: {typeToken: 'Espacio', character: char,},
+                token: { typeToken: 'Espacio', character: char, },
                 state: 0
             }
         }
 
+    }
+
+    stateOne() {
+        const letters = /([aA-zZ])/;
+        
+        if (letters.test(char)) {
+            swap += char
+            iterador++
+            estado = 1
+        } else if (operatorsAccess.test(char)) {
+            listTokens.push({
+                typeToken: 'Letters',
+                character: swap,
+            })
+            swap = ''
+            estado = 0
+        } else {
+            listTokens.push({
+                typeToken: 'Letters',
+                character: swap,
+            })
+            swap = ''
+            estado = 0
+        }
     }
 }
